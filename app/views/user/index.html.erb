@@ -1,0 +1,10 @@
+<h1>Hello! <%=@user.sample.name %></h1>
+
+<div>
+  <% @user.each do |u| %>
+  <div>
+    <%= u.name %> - <%= u.role %>
+    <%= u.manager %>
+  </div>
+  <% end %>
+<div>
