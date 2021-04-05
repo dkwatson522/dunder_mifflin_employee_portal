@@ -1,10 +1,58 @@
-<h1>Hello! <%=@user.sample.name %></h1>
+<h1 class="text-center">Hello! <%=@user.sample.name %></h1>
 
 <div>
   <% @user.each do |u| %>
-  <div>
-    <%= u.name %> - <%= u.role %>
+  <div class="border-gray-300 border-b-2">
+    <%= u.name %> - <%= u.experience %> years
     <%= u.manager %>
   </div>
   <% end %>
-<div>
+</div>
+<div class="">
+  <%= form_for User.new, url: user_index_path, html: {class: "flex flex-col border border-2 p-2 mt-2"} do |e| %>
+    <div class="">
+      <%= e.label :name %><br>
+      <%= e.text_field :name, placeholder:"enter name" %>
+    </div>
+    <div class="">
+      <%= e.label :role %><br>
+      <%= e.text_field :role, placeholder:"enter role" %>
+    </div>
+    <div class="">
+      <%= e.label :department %><br>
+      <%= e.text_field :department, placeholder:"enter department" %>
+    </div>
+    <div class="">
+      <%= e.label :paid_time_off %><br>
+      <%= e.number_field :paid_time_off, placeholder:"enter PTO amount" %>
+    </div>
+
+
+    <div class="">
+      <%= e.label :salary %><br>
+      <%= e.number_field :salary, placeholder:"enter salary" %>
+    </div>
+    <div class="">
+      <%= e.label :experience %><br>
+      <%= e.number_field :experience, placeholder:"enter years of experience" %>
+    </div>
+    <div class="">
+      <%= e.label :role %><br>
+      <%= e.number_field :role, placeholder:"enter manager" %>
+    </div>
+    <div class="">
+      <%= e.label :is_admin %><br>
+      <%= e.text_field :is_admin, placeholder:"enter role" %>
+    </div>
+    <div class="">
+      <%= e.label :username %><br>
+      <%= e.text_field :username, placeholder:"enter username" %>
+    </div>
+    <div class="">
+      <%= e.label :password %><br>
+      <%= e.text_field :password, placeholder:"enter password" %>
+    </div>
+
+    <%= e.submit class: 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' %>
+  <% end %>
+</div>

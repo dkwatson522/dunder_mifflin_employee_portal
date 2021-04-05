@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_011833) do
+ActiveRecord::Schema.define(version: 2021_04_03_031302) do
 
   create_table "requests", force: :cascade do |t|
     t.float "number_of_hours"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2021_04_02_011833) do
     t.integer "experience"
     t.integer "manager_id"
     t.boolean "is_admin", default: false
+    t.string "username"
+    t.string "password_digest"
     t.index ["manager_id"], name: "index_users_on_manager_id"
   end
 
