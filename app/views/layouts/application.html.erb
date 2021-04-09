@@ -9,29 +9,11 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer="defer"></script>
   </head>
 
   <body>
-    <nav class="bg-black text-white">
-      <div class="max-w-5xl mx-auto border border-red-400 ">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center">
-            <div class="w-36">
-              <%= link_to "/" do%>
-                <%= image_tag ("Dunder_Mifflin_Inc_Logo.png") %>
-              <% end %>
-            </div>
-            <div class="">
-              PRIMARY LINKS
-            </div>
-          </div>
-
-          <div class="">
-            SECONDARY LINKS
-          </div>
-        </div>
-      </div>
-    </nav>
+    <%= render './shared/navbar' %>
     <div class="container mx-auto p-4">
       <%= yield %>
     </div>
