@@ -90,9 +90,71 @@
       </div>
     </div>
 
-    <% if current_user.is_admin %>
+    <% if current_user.employees.count > 0 %>
+      <div class="flex flex-col mt-8">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+          <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <table class="min-w-full">
+              <thead>
+                <tr>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Name</th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Title</th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Experience (years)</th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    PTO Balance</th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                </tr>
+              </thead>
+
+              <tbody class="bg-white">
+                <% current_user.employees.each do |e| %>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <div class="flex items-center">
+                        <div class="flex-shrink-0 h-10 w-10">
+                          <img class="h-10 w-10 rounded-full" src="<%= e.image_url %>" alt="">
+                        </div>
+
+                        <div class="ml-4">
+                          <div class="text-sm leading-5 font-medium text-gray-900"><%= e.name.split.map(&:capitalize).join(' ') %>
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500"><%= e.email %></div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <div class="text-sm leading-5 text-gray-900"><%= e.role.split.map(&:capitalize).join(' ') %></div>
+                      <div class="text-sm leading-5 text-gray-500"><%= e.department.split.map(&:capitalize).join(' ') %></div>
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                      <%= e.experience %>
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        <%= e.paid_time_off %>
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                      <%= link_to "VIEW", user_path(e.id), class:"text-indigo-600 hover:text-indigo-900" %>
+                      <%= link_to "EDIT", edit_user_path(e.id), class:"text-indigo-600 hover:text-indigo-900" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <% elsif current_user.department == "human resources"%>
+
     <div class="flex flex-col mt-8">
-      <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="-my-2 py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
           <table class="min-w-full">
             <thead>
@@ -110,12 +172,12 @@
             </thead>
 
             <tbody class="bg-white">
-              <% current_user.employees.each do |e| %>
+              <% @all_users.each do |e| %>
                 <tr>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
                       <div class="flex-shrink-0 h-10 w-10">
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                        <img class="h-10 w-10 rounded-full" src="<%= e.image_url %>" alt="">
                       </div>
 
                       <div class="ml-4">
@@ -151,7 +213,13 @@
         </div>
       </div>
     </div>
-    <% end %>
+    <div class="font-semibold py-4 px-6">
+      <%= link_to "Add New Employee", new_user_url, class:"text-indigo-600 hover:text-indigo-900" %>
+      <% end %>
+    </div>
 
+    <div class="font-semibold py-4 px-6">
+      <%= link_to "Review #{current_user.requests.count} PTO Requests", user_requests_path(current_user), class: "text-indigo-600 hover:text-indigo-900" %>
+    </div>
   </div>
 </main>

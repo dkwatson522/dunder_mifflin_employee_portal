@@ -16,9 +16,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @all_users = User.all
   end
 
   def create
+    @new_user = User.create(user_params)
+
+    redirect_to users_path
   end
 
   private
@@ -26,5 +30,10 @@ class UsersController < ApplicationController
     user_id = params[:id]
 
     @user = User.find_by(id: user_id)
+  end
+  def user_params
+    params
+      .require(:user)
+      .permit(:name, :email, :password, :password_confirmation, :role, :department, :salary, :experience, :paid_time_off, :manager_id, :is_admin, :image_url)
   end
 end
