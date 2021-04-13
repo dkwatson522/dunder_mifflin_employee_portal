@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @all_users = User.all
+    if current_user
+      @all_users = User.where.not(id: current_user.id)
+    end
     unless current_user
-      redirect_to new_user_session_path, alert: "Please Login"
+      redirect_to new_user_session_path, alert: "Please Log In"
     end
   end
 
