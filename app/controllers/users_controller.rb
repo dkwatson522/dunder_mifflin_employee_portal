@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     if current_user
-      @all_users = User.where.not(id: current_user.id)
+      @all_users = User.where.not(id: current_user.id).order('department, name')
     end
     unless current_user
       redirect_to new_user_session_path, alert: "Please Log In"
@@ -17,12 +17,24 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def update
+    @user.update(user_params)
+
+    redirect_to user_path(@user)
+  end
+
   def show
-    @all_users = User.all
+    @all_users = User.order(:name)
   end
 
   def create
     @new_user = User.create(user_params)
+
+    redirect_to users_path
+  end
+
+  def destroy
+    @user.destroy
 
     redirect_to users_path
   end

@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :employees, dependent: :destroy, class_name: 'User', foreign_key: 'manager_id', inverse_of: :manager
   belongs_to :manager, class_name: 'User', optional: true, inverse_of: :employees
   has_many :requests
+
+  def start_time
+    self.requests.created_at ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+  end
 end
