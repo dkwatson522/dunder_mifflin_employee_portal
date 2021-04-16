@@ -1,7 +1,7 @@
-<main class="flex flex-col">
-  <%= form_for @request, url: user_request_path(@user), html: {class: "bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |r| %>
+<main class="flex flex-col overflow-x-hidden overflow-y-auto bg-gray-200 rounded-md">
+  <%= form_for @new_request, url: user_requests_path(@user), html: {class: "bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |r| %>
     <div class="p-3">
-      <h3 class="font-bold text-xl text-center">Edit Request</h3>
+      <h3 class="font-bold text-xl text-center">New Request</h3>
     </div>
 
     <div class="">
@@ -38,14 +38,11 @@
           class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
         %>
       </div>
-      <div class="md:w-1/2 pl-3">
-        <%= r.label :is_approved, "Status", class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-        <%= r.select :is_approved, options_for_select([['Approved', true], ['Denied', false]]), :prompt => 'Select One' %>
-      </div>
     </div>
 
     <div class="flex flex-row justify-center w-full px-3 mt-2">
       <%= r.submit "Save Request", class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 bg-blue-400 p-2 rounded-md" %>
     </div>
   <% end %>
+
 </main>
