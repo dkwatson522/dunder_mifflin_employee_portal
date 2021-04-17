@@ -1,6 +1,6 @@
-<h1>Hi, <%= @manager.name %></h1>
+<h1>Hi, <%= @manager.name.split.map(&:capitalize).join(' ') %></h1>
 <p>
-  You have received a new PTO request from <%= @user.name %>
+  You have received a new PTO request from <%= @user.name.split.map(&:capitalize).join(' ') %>
 </p>
 <p>
   To login to the site, just follow this link: <%= link_to "Here", root_url %>.
