@@ -1,7 +1,7 @@
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 rounded-md">
   <div class="container mx-auto px-6 py-8">
     <div class="divide-x-8 text-gray-700 text-3xl font-medium flex flex-row items-center">
-      <%= image_tag ("#{current_user.image_url}"), class:"h-16 w-16 rounded-full" %>
+      <%= image_tag ("#{current_user.image_url}"), class:"inline-block h-14 w-14 rounded-full" %>
       <span class="self-end font-bold text-blue-500 underline">
         <%= current_user.name.split.map(&:capitalize).join(' ') %>
       </span>
@@ -132,7 +132,7 @@
               <td class="p-6 whitespace-no-wrap border-b border-gray-200">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 ">
-                    <%= image_tag ("#{e.image_url}"), class:"h-16 w-16 rounded-full" %>
+                    <%= image_tag ("#{e.image_url}"), class:"inline-block h-14 w-14 rounded-full" %>
                   </div>
 
                   <div class="ml-4">
@@ -216,7 +216,7 @@
                 <td class="p-6 whitespace-no-wrap border-b border-gray-200">
                   <div class="flex items-center">
                     <div class="flex-shrink-0">
-                      <%= image_tag ("#{e.image_url}"), class:"h-16 w-16 rounded-full" %>
+                      <%= image_tag ("#{e.image_url}"), class:"inline-block h-14 w-14 rounded-full" %>
                     </div>
 
                     <div class="ml-4">
@@ -270,17 +270,17 @@
     </tbody>
   </table>
 </div>
-<div class="mt-6 flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-  <div class="font-semibold py-4 px-6">
-    <%= link_to "Add New Employee", new_user_url, class:"text-indigo-600 hover:text-indigo-900" %>
-  <% end %>
-  </div>
-  <div class="font-semibold py-4 px-6">
-    <%= link_to "Review #{current_user.requests.count} PTO Requests", user_requests_path(current_user), class: "text-indigo-600 hover:text-indigo-900" %>
-  </div>
-  <div class="font-semibold py-4 px-6">
-    <%= link_to "New Requests", new_user_request_path(current_user), class: "text-indigo-600 hover:text-indigo-900" %>
-  </div>
+<div class="mt-6 flex items-center px-5 py-6 shadow-sm rounded-md bg-white justify-around">
+  <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <%= link_to "Add New Employee", new_user_url %>
+  </button>
+  <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <%= link_to "View #{current_user.requests.count} PTO Requests", user_path(current_user) %>
+  </button>
+  <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <%= link_to "New Requests", new_user_request_path(current_user) %>
+  </button>
+<% end %>
 </div>
 </div>
 

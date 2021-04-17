@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_04_16_031548) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "requests", force: :cascade do |t|
     t.float "number_of_hours"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_approved", default: false
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_031548) do
     t.integer "paid_time_off"
     t.integer "salary"
     t.integer "experience"
-    t.integer "manager_id"
+    t.bigint "manager_id"
     t.boolean "is_admin", default: false
     t.string "email", null: false
     t.string "image_url"
