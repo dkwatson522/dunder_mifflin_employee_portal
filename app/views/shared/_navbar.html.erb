@@ -14,17 +14,17 @@
           <div class="flex items-center">
 
             <div x-data="{ dropdownOpen: false }" class="relative">
-              <button @click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden focus:outline-none">
-                <img class="h-full w-full object-cover" src="<%= current_user.image_url %>" alt="Your avatar">
+              <button @click="dropdownOpen = ! dropdownOpen" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <img class="h-8 w-8 rounded-full" src="<%= current_user.image_url %>" alt="Your avatar">
               </button>
 
               <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
 
               <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden xl z-10" style="display: none;">
-                <div class="block px-4 py-2 text-center text-xs text-gray-700 border-gray-700 border-b-2">
+                <div class="block px-4 py-2 text-sm text-gray-700 border-gray-700 border-b-2">
                   <span>Logged in as <%= current_user.email %></span>
                 </div>
-                <%= link_to destroy_user_session_path, method: :delete, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white" do %>
+                <%= link_to destroy_user_session_path, method: :delete, class:"block px-4 py-2 text-sm text-gray-700" do %>
                   Logout
                 <% end %>
               </div>
@@ -38,8 +38,8 @@
           <div class="flex items-center">
 
             <div x-data="{ dropdownOpen: false }" class="relative">
-              <button @click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <button @click="dropdownOpen = ! dropdownOpen" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </button>
@@ -47,7 +47,7 @@
               <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
 
               <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden xl z-10" style="display: none;">
-                <%= link_to new_user_session_path, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white" do %>
+                <%= link_to new_user_session_path, class:"block px-4 py-2 text-sm text-gray-700" do %>
                   Log In
                 <% end %>
               </div>
