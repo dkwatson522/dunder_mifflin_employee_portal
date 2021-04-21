@@ -3,37 +3,26 @@ import React, { useState, useEffect } from 'react'
 import { MailIcon, PhoneIcon } from '@heroicons/react/solid'
 import axios from 'axios'
 
-const employees = [
-  {
-    name: 'Jane Cooper',
-    title: 'Paradigm Representative',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  // More people...
-]
 
 
 
 export default function EmployeeCard() {
 
-
-  const [employees, setEmployees] = [{}]
+  const [employees, setEmployees] = useState([])
 
   useEffect(() => {
-    axios.get('/api/v1/users/json')
-      .then(console.log(res))
-
-  }, []);
+    axios.get('/api/v1/users')
+    .then(response => {
+      const allEmployees = response.data
+      setEmployees(allEmployees)
+    })
+  }, employees)
 
   return (
-    <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ul className="my-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {employees.map((employee) => (
         <li
-          key={employee.email}
+          key={employee.id}
           className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
         >
           <div className="flex-1 flex flex-col p-8">

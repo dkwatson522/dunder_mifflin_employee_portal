@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     unless current_user
       redirect_to new_user_session_path, alert: "Please Log In"
     end
+    # employees = @all_users
+    # render component: 'EmployeeCard', props: { employees: @all_users }, tag: 'div', class: 'EmployeeCard'
   end
 
   def new
