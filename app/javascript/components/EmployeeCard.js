@@ -5,7 +5,7 @@ import { MailIcon, EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/solid
 
 
 export default function EmployeeCard(props) {
-  const { employee, handleDeleteEmployee } = props;
+  const { employee, handleEmployeeDelete } = props;
 // why does [employees] not work here
 
   return (
@@ -14,7 +14,7 @@ export default function EmployeeCard(props) {
       className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
     >
       <div className="flex-1 flex flex-col p-8">
-        <img className="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full" src={employee.image_url} alt="" />
+        <img className="w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src={employee.image_url} alt="" />
         <h3 className="mt-6 text-gray-900 text-sm font-medium capitalize">{employee.name}</h3>
         <dl className="mt-1 flex-grow flex flex-col justify-between">
           <dt className="sr-only">Title</dt>
@@ -27,15 +27,6 @@ export default function EmployeeCard(props) {
       </div>
       <div>
         <div className="-mt-px flex divide-x divide-gray-200">
-          {/*<div className="w-0 flex-1 flex">
-            <a
-              href={`mailto:${employee.email}`}
-              className="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
-            >
-              <MailIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
-              <span className="ml-3">Email</span>
-            </a>
-          </div>*/}
           <div className="-ml-px w-0 flex-1 flex">
             <a
               href={`/users/${employee.id}`}
@@ -59,12 +50,11 @@ export default function EmployeeCard(props) {
               href={'/users'}
               method= "DELETE"
               className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
-
+              onClick={() => handleEmployeeDelete(employee.id)}
             >
               <TrashIcon
               className="w-5 h-5 text-gray-400"
               aria-hidden="true"
-
               />
               <span className="ml-3"></span>
             </a>

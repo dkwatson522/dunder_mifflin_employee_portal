@@ -33,6 +33,8 @@ gem "simple_calendar", "~> 2.4"
 
 gem 'react-rails'
 
+gem 'awesome_print', '~> 1.8'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
