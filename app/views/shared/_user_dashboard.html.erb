@@ -1,15 +1,9 @@
-<main class="flex-1 relative z-0 bg-gray-100">
-
-
-
-  <article class="bg-white shadow">
-    <!-- Profile header -->
+<main class="flex-col relative z-0">
+  <div class="bg-white shadow">
     <div class="px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
-      <div class="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200">
+      <div class="py-6 md:flex flex-col flex md:items-center md:justify-between lg:border-t lg:border-gray-200">
         <div class="flex-1 min-w-0">
-          <!-- Profile -->
           <div class="flex items-center">
-
             <div>
               <div class="flex items-center">
                 <%= image_tag ("#{current_user.image_url}"), class:"w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" %>
@@ -37,17 +31,45 @@
           </div>
         </div>
         <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
-          <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
-            <%= link_to "Edit Profile", edit_user_path(current_user) %>
-          </button>
+          <% if current_user.department == "human resources" %>
+          <div class="flex items-center px-5 py-6 bg-white justify-around">
+            <span class="relative z-0 inline-flex rounded-md">
+              <button type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                <%= link_to "Add New Employee", new_user_url %>
+              </button>
+              <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                <%= link_to "Edit Profile", edit_user_path(current_user) %>
+              </button>
+              <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                <%= link_to "View #{current_user.requests.count} PTO Request(s)", user_path(current_user) %>
+              </button>
+              <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                <%= link_to "New PTO Request", new_user_request_path(current_user) %>
+              </button>
+            </span>
+            <% else %>
+            <div class="mt-6 flex items-center px-5 py-6 rounded-md bg-white justify-around">
+              <span class="relative z-0 inline-flex rounded-md">
+                <button type="button" class="-relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <%= link_to "View #{current_user.requests.count} PTO Request(s)", user_path(current_user) %>
+                </button>
+                <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <%= link_to "Edit Profile", edit_user_path(current_user) %>
+                </button>
+                <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <%= link_to "New PTO Request", new_user_request_path(current_user) %>
+                </button>
+              </span>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
-  </article>
+  </div>
 
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+  <div class="max-w-6xl px-4 sm:px-6 lg:px-8 mt-4">
     <div class="my-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      <!-- Card -->
       <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="p-5">
           <div class="flex items-center">
@@ -71,7 +93,6 @@
           </div>
         </div>
       </div>
-
       <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="p-5">
           <div class="flex items-center">
@@ -142,41 +163,11 @@
         </div>
       </div>
     </div>
-    <div class="my-2">
-      <h2 class="text-lg leading-6 font-medium text-gray-900">Employees Managed</h2>
+    <% if current_user.employees.count > 0 || current_user.department == "human resources" %>
+    <div class="my-4">
+      <h2 class="text-lg leading-6 font-medium text-gray-900 text-2xl">Employees Managed</h2>
       <%= react_component("EmployeeList") %>
     </div>
+    <% end %>
   </div>
-
-
-  <% if current_user.department == "human resources"%>
-  <div class="flex items-center px-5 py-6 bg-white justify-around">
-    <span class="relative z-0 inline-flex shadow-sm rounded-md">
-      <button type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-        <%= link_to "Add New Employee", new_user_url %>
-      </button>
-      <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-        <%= link_to "View #{current_user.requests.count} PTO Requests", user_path(current_user) %>
-      </button>
-      <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-        <%= link_to "New Request", new_user_request_path(current_user) %>
-      </button>
-    </span>
-    <% else %>
-    <div class="mt-6 flex items-center px-5 py-6 shadow-sm rounded-md bg-white justify-around">
-      <span class="relative z-0 inline-flex shadow-sm rounded-md">
-        <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-          <%= link_to "View #{current_user.requests.count} PTO Requests", user_path(current_user) %>
-        </button>
-        <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-          <%= link_to "New Request", new_user_request_path(current_user) %>
-        </button>
-      </span>
-    </div>
-
-  <% end %>
-
-  </div>
-
-
 </main>

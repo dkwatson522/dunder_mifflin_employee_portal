@@ -5,11 +5,9 @@ import { MailIcon, EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/solid
 
 
 export default function EmployeeCard(props) {
-  const { employee, handleEmployeeDelete } = props;
-// why does [employees] not work here
+  const { employee, setSelectedEmployee } = props;
 
   return (
-
     <li
       className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
     >
@@ -47,15 +45,15 @@ export default function EmployeeCard(props) {
           </div>
           <div className="-ml-px w-0 flex-1 flex">
             <a
-              href={'/users'}
-              method= "DELETE"
               className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
-              onClick={() => handleEmployeeDelete(employee.id)}
             >
               <TrashIcon
               className="w-5 h-5 text-gray-400"
               aria-hidden="true"
-              />
+              onClick={() => setSelectedEmployee(employee)}
+              >
+              </TrashIcon>
+
               <span className="ml-3"></span>
             </a>
           </div>

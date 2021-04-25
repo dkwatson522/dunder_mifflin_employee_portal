@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
-// import PropTypes from "prop-types"
 import EmployeeCard from "./EmployeeCard"
+import Modal from "./Modal"
 import axios from 'axios'
-// import Toggle from "./Toggle"
 
 function EmployeeList() {
 
@@ -15,33 +14,18 @@ function EmployeeList() {
   }, [])
 
   const [employees, setEmployees] = useState([]);
-  const [selectedEmployee, setSelectedEmployee] = useState();
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   const handleEmployeeDelete = (e) => {
     const deleteURL = `/api/v1/users/${e}`
-    console.log(deleteURL)
+    console.log('hitting delete')
     axios.delete(deleteURL)
       .then(response => {
-        console.log(response)
-        console.log(response.data)
+        setEmployees(employees.filter(employee => employee.id !== e))
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err.response)
       })
-
-    // if (selectedEmployee != null && selectedEmployee === e) {
-    //   setSelectedEmployee(undefined)
-    // }
-    setEmployees(employees.filter(employee => employee.id !== e))
-
-    // const deleteURL = `/api/v1/users/${e}`
-    // console.log(deleteURL)
-    // fetch(deleteURL, {
-    //   method: "DELETE"
-    // }).then(() => {
-    //   //client side delete
-    //   // setEmployees()
-    // })
   }
 
   return (
@@ -50,11 +34,16 @@ function EmployeeList() {
         {employees.map((employee) => (
           <EmployeeCard
             employee={employee}
+            setSelectedEmployee={setSelectedEmployee}
             key={employee.id}
-            handleEmployeeDelete={handleEmployeeDelete}
           />
         ))}
       </ul>
+      {selectedEmployee && <Modal
+      selectedEmployee={selectedEmployee}
+      setSelectedEmployee={setSelectedEmployee}
+      handleEmployeeDelete={handleEmployeeDelete}
+      />}
     </React.Fragment>
   );
 }

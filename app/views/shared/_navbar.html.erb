@@ -15,12 +15,12 @@
 
             <div x-data="{ dropdownOpen: false }" class="relative">
               <button @click="dropdownOpen = ! dropdownOpen" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <img class="h-8 w-8 rounded-full" src="<%= current_user.image_url %>" alt="Your avatar">
+                <img class="w-16 h-16 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src="<%= current_user.image_url %>" alt="Your avatar">
               </button>
 
               <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
 
-              <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden xl z-10" style="display: none;">
+              <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-gray-200 rounded-md overflow-hidden xl z-10" style="display: none;">
                 <div class="block px-4 py-2 text-sm text-gray-700 border-gray-700 border-b-2">
                   <span>Logged in as <%= current_user.email %></span>
                 </div>
@@ -46,7 +46,7 @@
 
               <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
 
-              <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden xl z-10" style="display: none;">
+              <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-gray-200 rounded-md overflow-hidden xl z-10" style="display: none;">
                 <%= link_to new_user_session_path, class:"block px-4 py-2 text-sm text-gray-700" do %>
                   Log In
                 <% end %>
