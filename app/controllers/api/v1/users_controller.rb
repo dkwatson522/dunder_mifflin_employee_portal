@@ -4,12 +4,17 @@ module Api::V1
     protect_from_forgery unless: -> {request.format.json?}
 
     def index
-      if current_user.department == 'human resources'
-        @users = User.where.not(id: current_user.id).order('department, name')
+
+      if current_user.department == 'Human Resources'
+        @users = User.where.not(id: current_user.id).with_attached_avatar.order('department, name')
       elsif current_user.employees.count > 0
-        @users = current_user.employees.order('department, name')
+        @users = current_user.employees.with_attached_avatar.order('department, name')
       end
-      render json: @users
+      @all_users = @users.map do |user|
+        user.as_json.merge({ avatar: Rails.application.routes.url_helpers.url_for( user.avatar) })
+      end
+      # binding.pry
+      render json: @all_users
     end
 
     def show

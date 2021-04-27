@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
 
   has_many :employees, dependent: :destroy, class_name: 'User', foreign_key: 'manager_id', inverse_of: :manager
+  has_one_attached :avatar
   belongs_to :manager, class_name: 'User', optional: true, inverse_of: :employees
   has_many :requests, dependent: :destroy
 end

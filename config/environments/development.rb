@@ -30,8 +30,11 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # # Store uploaded files on the local file system (see config/storage.yml for options).
+  # config.active_storage.service = :local
+
+  # Use Cloudinary.
+  config.active_storage.service = :cloudinary
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -86,4 +89,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 end

@@ -35,6 +35,8 @@ gem 'react-rails'
 
 gem 'awesome_print', '~> 1.8'
 
+gem 'cloudinary'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

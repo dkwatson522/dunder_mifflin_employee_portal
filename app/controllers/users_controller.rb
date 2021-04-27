@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    # binding.pry
     if current_user
       @all_users = User.where.not(id: current_user.id).order('department, name')
     end
@@ -14,9 +15,13 @@ class UsersController < ApplicationController
 
   def new
     @new_user = User.new
+    @all_users = User.all
   end
 
   def edit
+    @all_users = User.all
+
+    @user.avatar.attach(params[:avatar])
   end
 
   def update
@@ -30,6 +35,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # binding.pry
     @new_user = User.create(user_params)
 
     redirect_to users_path
@@ -50,6 +56,6 @@ class UsersController < ApplicationController
   def user_params
     params
       .require(:user)
-      .permit(:name, :email, :password, :password_confirmation, :role, :department, :salary, :experience, :paid_time_off, :manager_id, :is_admin, :image_url)
+      .permit(:name, :email, :password, :password_confirmation, :role, :department, :salary, :experience, :paid_time_off, :manager_id, :is_admin, :image_url, :avatar)
   end
 end

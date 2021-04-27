@@ -2,17 +2,17 @@
 import React from 'react'
 import { MailIcon, EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/solid'
 
-
-
 export default function EmployeeCard(props) {
   const { employee, setSelectedEmployee } = props;
+
+  console.log(employee)
 
   return (
     <li
       className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
     >
       <div className="flex-1 flex flex-col p-8">
-        <img className="w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src={employee.image_url} alt="" />
+        <img className="w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src={employee.avatar} alt="" />
         <h3 className="mt-6 text-gray-900 text-sm font-medium capitalize">{employee.name}</h3>
         <dl className="mt-1 flex-grow flex flex-col justify-between">
           <dt className="sr-only">Title</dt>

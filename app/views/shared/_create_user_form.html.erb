@@ -46,7 +46,7 @@
   </div>
   <div class="md:w-1/2 px-3">
     <%= e.label :manager_id, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.number_field :manager_id, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3", placeholder:"enter Manager ID" %>
+    <%= e.select("manager_id", @all_users.map{ |u| ["#{u.name}", u.id]}, { :include_blank => true }) %>
   </div>
   <div class="md:w-1/2 px-3">
     <%= e.label :is_admin, 'Administrator', class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
@@ -60,6 +60,13 @@
   <div class="md:w-full px-3">
     <%= e.label :image_url, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
     <%= e.text_field :image_url, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3", placeholder:"enter image URL" %>
+    <p class="text-grey-dark text-xs italic"></p>
+  </div>
+</div>
+<div class="-mx-3 md:flex mb-6">
+  <div class="md:w-full px-3">
+    <%= e.label :avatar, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= e.file_field :avatar, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
     <p class="text-grey-dark text-xs italic"></p>
   </div>
 </div>
