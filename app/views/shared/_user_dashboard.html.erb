@@ -53,18 +53,18 @@
             <div class="mt-6 flex items-center px-5 py-6 rounded-md bg-white justify-around">
               <span class="relative z-0 inline-flex rounded-md">
                 <button type="button" class="-relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                  <%= link_to "View #{current_user.requests.count} PTO Request(s)", user_path(current_user) %>
+                  <%= link_to "Edit Profile", edit_user_path(current_user) %>
                 </button>
                 <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                  <%= link_to "Edit Profile", edit_user_path(current_user) %>
+                  <%= link_to "View #{current_user.requests.count} PTO Request(s)", user_path(current_user) %>
                 </button>
                 <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                   <%= link_to "New PTO Request", new_user_request_path(current_user) %>
                 </button>
               </span>
             </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
       </div>
     </div>
@@ -168,7 +168,9 @@
     <% if current_user.employees.count > 0 || current_user.department == "Human Resources" %>
     <div class="my-4">
       <h2 class="text-lg leading-6 font-medium text-gray-900 text-2xl">Employees Managed</h2>
-      <%= react_component("EmployeeList") %>
+      <div class="">
+        <%= react_component("EmployeeList") %>
+      </div>
     </div>
     <% end %>
   </div>

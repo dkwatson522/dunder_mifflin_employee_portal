@@ -12,7 +12,13 @@ export default function EmployeeCard(props) {
       className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
     >
       <div className="flex-1 flex flex-col p-8">
-        <img className="w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src={employee.avatar} alt="" />
+        {employee.avatar ?
+          <img className="w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src={employee.avatar} alt="" />
+          :
+          <span className="text-center inline-flex items-center mx-auto justify-center w-32 h-32 rounded-full bg-gray-500">
+            <span className="font-medium text-4xl leading-none text-white">{employee.name.capitalize().getInitials()}</span>
+          </span>
+        }
         <h3 className="mt-6 text-gray-900 text-sm font-medium capitalize">{employee.name}</h3>
         <dl className="mt-1 flex-grow flex flex-col justify-between">
           <dt className="sr-only">Title</dt>

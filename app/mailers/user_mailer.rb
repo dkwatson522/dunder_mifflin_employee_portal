@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     if @user.manager
       @manager = @user.manager
     elsif !@user.manager
-      @manager = User.find(3)
+      @manager = User.find_by(department:"Human Resources").first
     end
 
     mail(to: @manager.email, subject: "New Request from #{@user.name.split.map(&:capitalize).join(' ')}")

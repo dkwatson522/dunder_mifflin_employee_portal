@@ -20,8 +20,6 @@ class UsersController < ApplicationController
 
   def edit
     @all_users = User.all
-
-    @user.avatar.attach(params[:avatar])
   end
 
   def update

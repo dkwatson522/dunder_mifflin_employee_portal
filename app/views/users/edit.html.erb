@@ -1,4 +1,4 @@
-<div class="">
+<div class="flex-1 flex flex-col">
   <%= form_for @user, html: {class: "bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |e| %>
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-1/2 px-3 mb-6 md:mb-0">
@@ -55,7 +55,7 @@
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-full px-3">
       <%= e.label :avatar, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-      <%= e.file_field :avatar, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
+      <%= e.file_field :avatar, direct_upload: true, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
       <p class="text-grey-dark text-xs italic"></p>
     </div>
   </div>
