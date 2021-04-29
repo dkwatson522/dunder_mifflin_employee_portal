@@ -1,83 +1,93 @@
-<%= form_for @new_user, html: {class: "bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |e| %>
-<div class="-mx-3 md:flex mb-6">
-  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-    <%= e.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.text_field :name, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3", placeholder:"enter name" %>
-  </div>
-  <div class="md:w-1/2 px-3">
-    <%= e.label :email, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.email_field :email, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3", placeholder:"enter email" %>
-  </div>
-</div>
-<div class="-mx-3 md:flex mb-6">
-  <div class="md:w-full px-3">
-    <%= e.label :password, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.password_field :password, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3", placeholder:"******************" %>
-    <p class="text-grey-dark text-xs italic">*Password must be 6 characters</p>
-  </div>
-  <div class="md:w-full px-3">
-    <%= e.label :password_confirmation, autocomplete: "new-password", class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.password_field :password_confirmation, autocomplete: "new-password", class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3", placeholder:"******************" %>
-    <p class="text-grey-dark text-xs italic">*Make sure passwords match</p>
-  </div>
-</div>
-<div class="-mx-3 md:flex mb-6">
-  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-    <%= e.label :role, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.text_field :role, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3", placeholder:"enter role" %>
-  </div>
-  <div class="md:w-1/2 px-3">
-    <%= e.label :department, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.select :department, [ 'Sales', 'Accounting', 'Human Resources', 'Management', 'Reception','Product Oversight', 'Warehouse' ], :prompt => 'Select One' %>
-  </div>
-  <div class="md:w-1/2 px-3">
-    <%= e.label :salary, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.number_field :salary, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3", placeholder:"enter salary" %>
-  </div>
-</div>
-<div class="-mx-3 md:flex mb-6">
-  <div class="md:w-1/2 px-3">
-    <%= e.label :experience, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.number_field :experience, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3", placeholder:"enter years of experience" %>
-  </div>
-  <div class="md:w-1/2 px-3">
-    <%= e.label :paid_time_off, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.number_field :paid_time_off, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3", placeholder:"enter PTO amount" %>
-  </div>
-  <div class="md:w-1/2 px-3">
-    <%= e.label :manager_id, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.select("manager_id", @all_users.map{ |u| ["#{u.name}", u.id]}, { :include_blank => true }) %>
-  </div>
-  <div class="md:w-1/2 px-3">
-    <%= e.label :is_admin, 'Administrator', class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.radio_button :is_admin, 'true' %>
-    Yes
-    <%= e.radio_button :is_admin, 'false' %>
-    No
-  </div>
-</div>
-<div class="-mx-3 md:flex mb-6">
-  <div class="md:w-full px-3">
-    <%= e.label :image_url, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.text_field :image_url, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3", placeholder:"enter image URL" %>
-    <p class="text-grey-dark text-xs italic"></p>
-  </div>
-</div>
-<div class="-mx-3 md:flex mb-6">
-  <div class="md:w-full px-3">
-    <%= e.label :avatar, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-    <%= e.file_field :avatar, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
-    <p class="text-grey-dark text-xs italic"></p>
-  </div>
-</div>
-<div class="flex flex-row justify-around w-full px-3 mt-2">
-  <button type="button" name="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    <%= e.submit "Add Employee", class:"bg-indigo-600 hover:bg-indigo-700" %>
-  </button>
+<div class="flex-1 flex flex-col mx-auto max-w-lg">
+  <%= form_for @new_user, html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |e| %>
+  <div class="-mx-3 flex-col mb-6">
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.text_field :name, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"Enter Name" %>
+    </div>
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :email, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.email_field :email, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"Enter Email" %>
+    </div>
+    <div class="flex-col items-center px-4 mb-6 md:mb-0">
+      <div class="flex items-center" >
+        <%= e.label :password, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= e.password_field :password, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"*********" %>
+      </div>
+      <div class="">
+        <p class="w-full text-red-600 text-xs italic">*Password must be 6 characters</p>
+      </div>
+    </div>
+    <div class="flex-col items-center px-4 mb-6 md:mb-0">
+      <div class="flex items-center">
+        <%= e.label :password_confirmation, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= e.password_field :password_confirmation, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"*********" %>
+      </div>
+      <div class="">
+        <p class="w-full text-red-600 text-xs italic">*Make sure passwords match</p>
+      </div>  
+    </div>
+
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :role, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.text_field :role, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"Enter Role" %>
+    </div>
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :department, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.select(:department, [ 'Sales', 'Accounting', 'Human Resources', 'Management', 'Reception','Product Oversight', 'Warehouse' ], {:prompt => current_user.department} , { :class => "py-3 px-4 m-3 block w-full text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-gray-100"} )%>
+    </div>
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :salary, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.number_field :salary, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"Enter Salary" %>
+    </div>
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :experience, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.number_field :experience, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"Enter Experience in Years" %>
+    </div>
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :paid_time_off, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.number_field :paid_time_off, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"Enter PTO amount" %>
+    </div>
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= e.label :manager_id, class:"block text-sm font-medium text-gray-700" %>
+      <%= e.select(:manager_id, @all_users.map{ |u| ["#{u.name}", u.id]}, { :include_blank => 'No Manager Selected' }, { :class => "py-3 px-4 m-3 block w-full text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-gray-100"} ) %>
+    </div>
+
+    <div class="flex px-3">
+      <label class="relative block rounded-lg border border-gray-300 bg-white shadow-sm px-6 py-4 cursor-pointer hover:border-gray-400 sm:flex sm:justify-center focus-within:ring-1 focus-within:ring-offset-2 focus-within:ring-indigo-500 focus-within:bg-indigo-400 focus-within:text-white mr-2">
+        <%= e.radio_button(:is_admin, true, {:class => "sr-only"})  %>
+        <div class="flex items-center">
+          <div class="text-sm">
+            <p id="server-size-0-label" class="font-medium text-gray-900">
+              Administrative Employee
+            </p>
+          </div>
+        </div>
+      </label>
+      <label class="relative block rounded-lg border border-gray-300 bg-white shadow-sm px-6 py-4 cursor-pointer hover:border-gray-400 sm:flex sm:justify-center focus-within:ring-1 focus-within:ring-offset-2 focus-within:ring-indigo-500 focus-within:bg-indigo-400 focus-within:text-white ml-2">
+        <%= e.radio_button(:is_admin, false, {:class => "sr-only"})  %>
+        <div class="flex items-center">
+          <div class="text-sm">
+            <p id="server-size-0-label" class="font-medium text-gray-900">
+              Non-Administrative Employee
+            </p>
+          </div>
+        </div>
+      </label>
+    </div>
 
 
-  <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    <%= link_to "Cancel", users_path %>
-  </button>
+
+  </div>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-full px-3">
+      <%= e.label :avatar, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= e.file_field :avatar, direct_upload: true, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
+      <p class="text-grey-dark text-xs italic"></p>
+    </div>
+  </div>
+  <div class="">
+    <%= e.submit "Save Employee", class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 bg-blue-400 p-2 rounded-md" %>
+  </div>
+  <% end %>
 </div>
-<% end %>
