@@ -1,5 +1,5 @@
-<div class="flex-1 flex flex-col mx-auto max-w-lg">
-  <%= form_for @user, html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |e| %>
+<div class="flex-1 flex flex-col mx-auto">
+  <%= form_for @user, html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"} do |e| %>
   <div class="-mx-3 flex-col mb-6">
     <div class="flex items-center px-4 mb-6 md:mb-0">
       <%= e.label :name, class:"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
@@ -142,7 +142,7 @@
 
     </div>
   </div>
-  <div class="">
+  <div class="mx-auto">
     <%= e.submit "Save Changes", class:"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 bg-blue-400 p-2 rounded-md" %>
   </div>
   <% end %>

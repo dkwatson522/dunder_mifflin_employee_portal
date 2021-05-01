@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_one_attached :avatar
   belongs_to :manager, class_name: 'User', optional: true, inverse_of: :employees
   has_many :requests, dependent: :destroy
+  # ...
 end

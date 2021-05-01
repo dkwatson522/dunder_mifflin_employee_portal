@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :load_user
-  before_action :load_request, only: [:edit, :update]
+  before_action :load_request, only: [:show, :edit, :update]
 
   def index
   end

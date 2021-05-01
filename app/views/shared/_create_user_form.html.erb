@@ -1,6 +1,9 @@
 <div class="flex-1 flex flex-col mx-auto max-w-lg">
   <%= form_for @new_user, html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |e| %>
   <div class="-mx-3 flex-col mb-6">
+    <h3 class="font-bold text-xl text-center">New Employee</h3>
+  </div>
+  <div class="-mx-3 flex-col mb-6">
     <div class="flex items-center px-4 mb-6 md:mb-0">
       <%= e.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
       <%= e.text_field :name, class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3", placeholder:"Enter Name" %>
@@ -25,7 +28,7 @@
       </div>
       <div class="">
         <p class="w-full text-red-600 text-xs italic">*Make sure passwords match</p>
-      </div>  
+      </div>
     </div>
 
     <div class="flex items-center px-4 mb-6 md:mb-0">
@@ -75,9 +78,6 @@
         </div>
       </label>
     </div>
-
-
-
   </div>
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-full px-3">

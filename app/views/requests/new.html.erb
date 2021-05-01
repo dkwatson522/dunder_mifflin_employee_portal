@@ -1,23 +1,21 @@
-<main class="flex flex-col overflow-x-hidden overflow-y-auto bg-gray-200 rounded-md">
-  <%= form_for @new_request, url: user_requests_path(@user), html: {class: "bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |r| %>
-    <div class="p-3">
+<main class="flex-1 flex flex-col mx-auto max-w-lg">
+  <%= form_for @new_request, url: user_requests_path(@user), html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2"} do |r| %>
+    <div class="-mx-3 flex-col mb-6">
       <h3 class="font-bold text-xl text-center">New Request</h3>
     </div>
-
-    <div class="">
+    <div class="flex items-center px-4 mb-6 md:mb-0">
       <%= r.label :start_date, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
       <%= r.text_field :start_date,
         data: {
           controller: "flatpickr",
           flatpickr_alt_format: t("date.formats.long"),
-          # flatpickr_date_format: "%B %m, %Y",
           flatpickr_alt_input: true,
           flatpickr_min_date: Time.zone.now,
         },
-        class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+        class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3"
       %>
     </div>
-    <div class="">
+    <div class="flex items-center px-4 mb-6 md:mb-0">
       <%= r.label :end_date, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
       <%= r.text_field :end_date,
         data: {
@@ -27,28 +25,23 @@
           flatpickr_alt_input: true,
           flatpickr_min_date: Time.zone.now,
         },
-        class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+        class:"appearance-none block w-full bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3"
       %>
     </div>
-    <div class="flex flex-row justify-between">
-      <div class="md:w-1/2 pr-3">
-        <%= r.label :number_of_hours, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-        <%= r.text_field :number_of_hours,
-          class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-        %>
-      </div>
+    <div class="flex items-center px-4 mb-6 md:mb-0">
+      <%= r.label :number_of_hours, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= r.text_field :number_of_hours,
+        class:"appearance-none block w-1/3 bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3"
+      %>
     </div>
 
     <div class="flex flex-row justify-around w-full px-3 mt-2">
       <button type="button" name="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         <%= r.submit "Save Request", class:"bg-indigo-600 hover:bg-indigo-700" %>
       </button>
-
-
       <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         <%= link_to "Cancel", user_path(@user) %>
       </button>
     </div>
   <% end %>
-
 </main>
