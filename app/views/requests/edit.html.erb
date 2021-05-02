@@ -34,13 +34,14 @@
         class:"appearance-none block w-1/3 bg-gray-100 text-grey-darker border border-red rounded py-3 px-4 m-3"
       %>
     </div>
-    <% if  %>
+    <% if  current_user.department == 'Human Resources' || current_user.id == @user.manager_id %>
+      <div class="flex items-center px-4 mb-6 md:mb-0">
+        <%= r.label :is_approved, "Status",  class:"block text-sm font-medium text-gray-700" %>
+        <%= r.select :is_approved, options_for_select([['Approved', true], ['Denied', false]]), {:prompt => 'Select One'}, { :class => "py-3 px-4 m-3 block w-full text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-gray-100"} %>
+      </div>
     <% else %>
     <% end %>
-    <div class="flex items-center px-4 mb-6 md:mb-0">
-      <%= r.label :is_approved, "Status",  class:"block text-sm font-medium text-gray-700" %>
-      <%= r.select :is_approved, options_for_select([['Approved', true], ['Denied', false]]), {:prompt => 'Select One'}, { :class => "py-3 px-4 m-3 block w-full text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-gray-100"} %>
-    </div>
+
 
     <div class="flex flex-row justify-around w-full px-3 mt-2">
       <button type="button" name="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
