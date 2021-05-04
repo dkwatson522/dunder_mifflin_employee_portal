@@ -9,7 +9,7 @@ function EmployeeList() {
     axios.get('/api/v1/users')
     .then(response => {
       // const allEmployees = response.data
-      console.log(response.data)
+      // console.log(response.data)
       setEmployees(response.data)
     })
   }, [])
@@ -24,7 +24,7 @@ function EmployeeList() {
         setEmployees(employees.filter(employee => employee.id !== e))
       })
       .catch((err) => {
-        console.log(err.response)
+        // console.log(err.response)
       })
   }
 

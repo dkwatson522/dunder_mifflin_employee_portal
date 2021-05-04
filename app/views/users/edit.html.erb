@@ -10,7 +10,7 @@
       <%= e.email_field :email, class:"appearance-none block w-full bg-gray-100 text-gray-700 border border-red rounded py-3 px-4 m-3", placeholder:"Enter Email" %>
     </div>
     <!--  -->
-    <% if @user.department == 'Human Resources'%>
+    <% if current_user.department == 'Human Resources'%>
       <div class="flex items-center px-4 mb-6 md:mb-0">
         <%= e.label :role, class:"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
         <%= e.text_field :role, class:"appearance-none block w-full bg-gray-100 text-gray-700 border border-red rounded py-3 px-4 m-3", placeholder:"Enter Role" %>

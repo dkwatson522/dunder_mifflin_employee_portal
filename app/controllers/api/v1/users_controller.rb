@@ -10,13 +10,13 @@ module Api::V1
       elsif current_user.employees.count > 0
         @users = current_user.employees.order('department, name')
       end
+
       @all_users = @users.map do |user|
         if user.avatar.attached?
           user.as_json.merge({ avatar: Rails.application.routes.url_helpers.url_for( user.avatar) })
         else
           user
         end
-
       end
 
       render json: @all_users

@@ -5,8 +5,6 @@ import { MailIcon, EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/solid
 export default function EmployeeCard(props) {
   const { employee, setSelectedEmployee } = props;
 
-  console.log(employee)
-
   return (
     <li
       className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
