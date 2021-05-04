@@ -12,10 +12,17 @@
         <div class="flex justify-end items-center py-4 px-6">
           <div class="flex items-center">
             <div x-data="{ dropdownOpen: false }" class="relative">
-              <button @click="dropdownOpen = ! dropdownOpen" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <%= image_tag ("#{current_user.avatar.url}"), class:"w-16 h-16 object-cover flex-shrink-0 mx-auto bg-black rounded-full" %>
-              </button>
-
+              <% if current_user.avatar.attached? %>
+                <button @click="dropdownOpen = ! dropdownOpen" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <%= image_tag ("#{current_user.avatar.url}"), class:"w-16 h-16 object-cover flex-shrink-0 mx-auto bg-black rounded-full" %>
+                </button>
+              <% else %>
+                <button @click="dropdownOpen = ! dropdownOpen" class="p-4 bg-gray-800 flex text-sm font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <span className="text-center inline-flex items-center mx-auto justify-center w-32 h-32 rounded-full bg-gray-500">
+                    <span className="font-medium text-4xl leading-none text-white"><%= current_user.name.scan(/\b\w/).join.upcase %></span>
+                  </span>
+                </button>
+              <% end %>
               <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
 
               <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-gray-200 rounded-md overflow-hidden xl z-10" style="display: none;">
