@@ -54,8 +54,15 @@ export default function Modal({ selectedEmployee, handleEmployeeDelete, setSelec
                     Are you sure you want to remove <span className="capitalize">{selectedEmployee.name}</span>?
                   </Dialog.Title>
                   <div className="mt-2">
-                    <img className="w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src={selectedEmployee.image_url} alt="" />
+                    {selectedEmployee.avatar ?
+                      <img className="w-32 h-32 object-cover flex-shrink-0 mx-auto bg-black rounded-full" src={selectedEmployee.avatar} alt="" />
+                      :
+                      <span className="text-center inline-flex items-center mx-auto justify-center w-32 h-32 rounded-full bg-gray-500">
+                        <span className="font-medium text-4xl leading-none text-white">{selectedEmployee.name.capitalize().getInitials()}</span>
+                      </span>
+                    }
                   </div>
+
                 </div>
               </div>
               <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">

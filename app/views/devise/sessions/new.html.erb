@@ -1,4 +1,4 @@
-  <div class="min-h-screen flex flex-col bg-gray-50 sm:rounded-lg justify-center mt-2 py-12 sm:px-6 lg:px-8">
+  <div class="min-h-screen flex flex-col bg-gray-100 sm:rounded-lg justify-center mt-2 py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <%= image_tag ("Dunder_Mifflin_Inc_Logo.png"), class:"mx-auto h-24 w-auto" %>
       <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -12,14 +12,19 @@
         <div class="">
           <%= f.label :email, class:"block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
-            <%= f.email_field :email, class:"appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+            <%= f.select(:email, @users_email.map{ |u| ["#{u.name.split.map(&:capitalize).join(' ')} - #{u.email}", u.email]}, { :include_blank => 'Select Email' } , { :class => "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"} )%>
           </div>
         </div>
         <div class="">
           <%= f.label :password, class:"block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
-            <%= f.password_field :password, autocomplete: "current-password", class:"appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+            <%= f.password_field :password, autocomplete: "current-password", class:"appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm", value:"office" %>
           </div>
+          <!-- <div class="mt-1">
+            <p class="italic text-gray-700 text-xs">
+              Hint:<span class="ml-2 hidden">office</span>
+            </p>
+          </div> -->
         </div>
         <% if devise_mapping.rememberable? %>
           <div class="flex items-center justify-between">
