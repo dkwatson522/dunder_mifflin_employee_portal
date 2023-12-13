@@ -47,7 +47,6 @@ module Api::V1
     end
 
     def destroy
-      # binding.pry
       @user = User.find(params[:id])
 
       @user.destroy

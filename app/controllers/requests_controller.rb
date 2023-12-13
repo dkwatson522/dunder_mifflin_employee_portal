@@ -16,9 +16,6 @@ class RequestsController < ApplicationController
   end
 
   def update
-    # binding.pry
-    # initial_request_status = @request.is_approved
-
     if !@request.is_approved && request_params[:is_approved] == "true"
       new_pto_balance = @user.paid_time_off - request_params[:number_of_hours].to_f
       @user.update(paid_time_off: new_pto_balance)
@@ -45,9 +42,8 @@ class RequestsController < ApplicationController
   end
 
   def create
-    # @request = @user.requests
     @request = @user.requests.build(request_params)
-    # binding.pry
+
     if @request.save
       UserMailer.with(request: @request).new_request_email.deliver_now
       redirect_to user_path(@user)
