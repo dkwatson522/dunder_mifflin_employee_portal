@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    # binding.pry
     if current_user
       @all_users = User.where.not(id: current_user.id).order('department, name')
     end
@@ -33,7 +32,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # binding.pry
     @new_user = User.create(user_params)
 
     redirect_to users_path
