@@ -39,6 +39,10 @@ class User < ApplicationRecord
   belongs_to :manager, class_name: 'User', optional: true, inverse_of: :employees
   has_many :requests, dependent: :destroy
   has_many :employees, dependent: :destroy, class_name: 'User', foreign_key: 'manager_id', inverse_of: :manager
-  # has_one :salary
+  has_many :salaries
   has_one_attached :avatar
+
+  def current_salary
+    salaries.find_by(status: Salary.statuses[:active])
+  end
 end

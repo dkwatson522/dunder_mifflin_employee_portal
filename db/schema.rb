@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_233916) do
+ActiveRecord::Schema.define(version: 2023_12_13_132325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,21 @@ ActiveRecord::Schema.define(version: 2021_04_25_233916) do
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
+  create_table "salaries", force: :cascade do |t|
+    t.integer "base_amount"
+    t.integer "bonus_amount"
+    t.integer "status", default: 0
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_salaries_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "role"
     t.string "department"
     t.integer "paid_time_off"
-    t.integer "salary"
     t.integer "experience"
     t.bigint "manager_id"
     t.boolean "is_admin", default: false
@@ -71,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_233916) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "salary"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["manager_id"], name: "index_users_on_manager_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

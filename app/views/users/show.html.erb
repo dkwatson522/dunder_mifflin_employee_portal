@@ -81,7 +81,7 @@
                 </dt>
                 <dd>
                   <div class="text-lg font-medium text-gray-900">
-                    $<%= @user.salary.to_s.reverse.scan(/\d{3}|.+/).join(",").reverse %>
+                    $<%= @user.current_salary.total_amount.to_s.reverse.scan(/\d{3}|.+/).join(",").reverse %>
                   </div>
                 </dd>
               </dl>

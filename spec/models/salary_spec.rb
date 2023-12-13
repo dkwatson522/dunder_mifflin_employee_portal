@@ -14,9 +14,8 @@
 #
 #  index_salaries_on_user_id  (user_id)
 #
-FactoryBot.define do
-  factory :salary do
-    base_amount { Faker::Number.between(from:   50000, to: 110000) }
-    bonus_amount { Faker::Number.between(from:   500, to: 10000) }
-  end
+require 'rails_helper'
+
+RSpec.describe Salary, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

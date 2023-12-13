@@ -14,9 +14,12 @@
 #
 #  index_salaries_on_user_id  (user_id)
 #
-FactoryBot.define do
-  factory :salary do
-    base_amount { Faker::Number.between(from:   50000, to: 110000) }
-    bonus_amount { Faker::Number.between(from:   500, to: 10000) }
+class Salary < ApplicationRecord
+  enum status: %i(inactive active pending)
+
+  belongs_to :user
+
+  def total_amount
+    base_amount + bonus_amount
   end
 end
