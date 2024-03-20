@@ -1,10 +1,10 @@
-Website Link - https://stark-mountain-68376.herokuapp.com/
+Website Link - https://dundler-mifflin-hr.onrender.com
 
 Select an email from the drop down and use the password "office" to login as the user.
 
 A full-stack web application utilizing Ruby, Ruby on Rails, React and PostgreSQL to mock an employee portal based on The Office tv show.
 
-Users are able to view employee information such as salary, job title, department, years of experience and check their available paid time off (PTO) hours. All  
+Users are able to view employee information such as salary, job title, department, years of experience and check their available paid time off (PTO) hours. All
 
 There are 3 different levels of authentication for users determined by the job title that:
 1. Human Resources - able to see all users in the system and approve pending PTO requests.
